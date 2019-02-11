@@ -1,9 +1,17 @@
 from sys import argv
 
+def isLowerChar(input):
+    if str.islower(str(input)):
+       return true
+    else:
+       return False
 
-letter= "Z"
-argv = ""
-
+def isUpperChar(input):
+    if str.isupper(str(input)):
+       return true
+    else:
+       return False
+   
 def lowerToUpper(letter):
     if str.islower(letter):
         hex = ord(letter)
@@ -32,120 +40,107 @@ def convertCase(toConvert):
         output = ord(toConvert)-97
     return output
 
-def GetCypherCharLower(c, key):
-    end = 0;
-    if (c >= 'a' and c <= 'z'):
-        end=122
-
-    if (isLowerChar(c) == true):
-        newCharLower = c + (convertCase(key))
-    else:
-        newCharLower = 0
-        
-        #while (newCharLower > end)
-        #newCharLower -= 26;
-        #return (char)newCharLower;
-
-
 
 def GetCypherCharUpper(d, key):
-    end = 0
-    if (d >= 'A' and d <= 'Z'):
-        end=90
-    if (isUpperChar(d)==true):
+    end = 0;
+    if (d >= ord('A') and d <= ord('Z')):
+        end=90;
+
+    if (isUpperChar(d)==True):
         newCharUpper = d + (convertCase(key))
     else:
         return 0
-
-        while True: 
-            if newCharUpper > end:
-                newCharUpper -= 26
-                #return (char)newCharUpper;
-                return newCharUpper
+    while True:
+        if newCharUpper > end:
+            newCharUpper -= 26
+        else:
             break
+    
+        return newCharUpper
 
 
-#def main()
+key = "Z"
+keyDigit=ord(key)
 
-if (len(argv) < 1):
-    print("Fatal Error - No arguments passed! Program will now terminate!")
-    exit
-else:
-    (len(argv) > 0:
-        lengthInput = len(argv[0])
-        for a in range(lengthInput):
-            if str.isalpha(argv[0][a])==0:
-                print("error")
-            else:
-            print("Good")
+if keyDigit < 90 or keyDigit == 90:
+    keyMovement = keyDigit-65
+    print(f"In scope: {keyMovement}")
+    print(f"Key Digit: {keyDigit}")
 
+if keyDigit > 90:
+    print(f"Not in scope: {keyDigit}")
 
-
-
+print(f"Convert back to key: {chr(keyDigit)}")
 
 
 
 
+#def GetCypherCharLower(c, key):
+#    end = 0;
+#    if (c >= ord('a') and c <= ord('z')):
+#        end=122
+
+#    if (isLowerChar(c) == True):
+#        newCharLower = c + (convertCase(key))
+#    else:
+#        newCharLower = 0
+#    while True:
+#        if newCharLower > end: #wraparound of key... i.e. to stay between ascii a to z OR A to Z
+#            newCharLower -= 26
+#        else:
+#            break
+#    return newCharLower     
+ 
+
+
+#def GetCypherCharUpper(d, key):
+#    end = 0
+#    if (d >= ord('A') and d <= ord('Z')):
+#        end=90
+#    if (isUpperChar(d) == True):
+#        newCharUpper = d + +(convertCase(key))
+#    else:
+#        return 0
+
+#        while True: 
+#            if newCharUpper > end:
+#                newCharUpper -= 26
+#                return newCharUpper
+#            break
 
 
 
+##def main()
+
+#if (len(argv) < 1):
+#    print("Fatal Error - No arguments passed! Program will now terminate!")
+#    exit
+#if (len(argv) > 0):
+#    lengthInput = len(argv[0])
+#    for a in range(lengthInput):
+#        if str.isalpha(argv[0][a])==0:
+#            print("Error - Only Alphabetical Characters allowed")
+       
 
 
+#k = (argv[0]);
 
-#for(int a=0;  a < lengthInput; a++)
-#    {
-#        if( isalpha(argv[1][a]) == 0 )
-#            {
-#                printf("Error - Key entry invalid (Only characters allowed). The program will now terminate\n");
-#                return 1;
-#            }
+#i = "Dewald"
+#length = len(i)
+#modlength = len(k);
 
-#        else if(argc > 2)
-#            {
-#                printf("Error! Only a single word key allowed. Program will now terminate\n");
-#                return 1;
-#            }
+#print("ciphertext: ")
 
-#    }
-
-#    char* k = (argv[1]);
-
-#    string i = get_string("plaintext: ");
-#    int length = strlen(i);
-#    int modLength = strlen(k);
-
-#    printf("ciphertext: ");
-
-#    char p;
-#    char q;
-
-#    int counter = -1;
-
-#    for (int n = 0; n < length; n++)
-#        {
-
-#            char a = i[n];
-
-#            if (isalpha(a))
-#            {
-#                counter=counter+1;
-#            }
-
-#            if (isupper(a))
-#            {
-#                a = GetCypherCharUpper(a,k[(counter % modLength)]);
-#            }
-
-#            else if(islower(a))
-#            {
-#                a = GetCypherCharLower(a,k[(counter % modLength)]);
-#            }
-
-#        printf("%c", a);
-#    }
+#counter = -1;
 
 
+#for c in i:
+#    if str.isalpha(c):
+#        counter=counter+1
 
-#    printf("\n");
-#     return 0;
-#}
+#    if str.isupper(c):
+#        a = GetCypherCharUpper(a,k[(counter % modlength)])
+#    elif str.islower(c):
+
+#         a = GetCypherCharLower(a,k[(counter % modlength)]);
+#    print(f"{a}")
