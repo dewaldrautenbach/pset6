@@ -59,18 +59,31 @@ def GetCypherCharUpper(d, key):
         return newCharUpper
 
 
-key = "Z"
+key = "z"
 keyDigit=ord(key)
 
-if keyDigit < 90 or keyDigit == 90:
+if keyDigit <= 90:
     keyMovement = keyDigit-65
     print(f"In scope: {keyMovement}")
     print(f"Key Digit: {keyDigit}")
 
 if keyDigit > 90:
+    print(f"Not in scope of uppercase: {keyDigit}")
+
+print(f"Convert back to key: {chr(keyDigit)}")
+
+keyDigit=ord(key)
+
+if keyDigit >=97 and keyDigit <=122:
+    keyMovement = keyDigit-97
+    print(f"In scope of lowercase: {keyMovement}")
+    print(f"Key Digit: {keyDigit}")
+
+if keyDigit > 122:
     print(f"Not in scope: {keyDigit}")
 
 print(f"Convert back to key: {chr(keyDigit)}")
+
 
 
 
