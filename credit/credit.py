@@ -1,4 +1,4 @@
-letter= "p"
+letter= "Z"
 
 
 def lowerToUpper(letter):
@@ -11,7 +11,16 @@ def lowerToUpper(letter):
     else:
         return letter
 
+def upperToLower(letter):
+    if str.isupper(letter):
+        hex = ord(letter)
+        lowerCase = chr(hex+32)
+        #print(f"{upperCase}")
+        #print(f"{chr(hex-32)}")
+        return lowerCase
+    else:
+        return letter
 
 
 
-print(f"{lowerToUpper(letter)}")
+print(f"{upperToLower(letter)}")
