@@ -26,15 +26,19 @@ def  convertCase(toConvert):
 def GetCypherCharLower(c, key):
     if ord(c) >= ord('a') and ord(c) <= ord('z'):
         end = 122
-    if isLowerChar(c) == True:
-        newCharLower = str(ord(c) + ord(convertCase(key)))
-    else:
-        newCharLower = 0
-    while int(newCharLower) > end:
-        newCharLower -= 26
-        if newCharLower < end:
-            break
-    return (newCharLower)
+        if isLowerChar(c) == True:
+            newCharLower = str(ord(c) + ord(convertCase(key)))
+        else:
+            newCharLower = 0
+        while int(newCharLower) > end:
+            tempLower = int(newCharLower)
+            tempLower -= 26
+            #newCharUpper =- -26
+            #tempUpper = int(newCharUpper)
+            #tempUpper -= 26
+            if tempLower < end:
+                newCharUpper = tempLower
+        return (newCharLower)
 
 
 def  GetCypherCharUpper(d, key):
@@ -46,8 +50,13 @@ def  GetCypherCharUpper(d, key):
             else:
                 newCharUpper = 0
             while int(newCharUpper) > end:
-                newCharUpper -= 26
-                if newCharUpper < end:
+                tempUpper = int(newCharUpper)
+                tempUpper -= 26
+                #newCharUpper =- -26
+                #tempUpper = int(newCharUpper)
+                #tempUpper -= 26
+                if tempUpper < end:
+                    newCharUpper = tempUpper
                     break
             return (newCharUpper)
     
@@ -56,7 +65,7 @@ def  GetCypherCharUpper(d, key):
 
 
 
-k = argv[1] = "dewald"
+k = argv[1] = "123456"
 i = "Zander" #get_string("Plaintext: ")
 length = len(i) #plaintext
 modLength = len(k) #key
@@ -65,11 +74,12 @@ modLength = len(k) #key
 if len(argv) == 0:
     print("No argument passed")
     exit
-elif str.isalpha(argv[1] == 0):
+elif str.isalpha(argv[1]) == 0:
     print("Invalid text entered!")
     exit
-elif argc > 2:
+elif len(argv) > 1:
     print("Too many arguments")
+    exit
 
 counter = -1
 
