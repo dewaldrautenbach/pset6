@@ -17,10 +17,10 @@ def isUpperChar(input):
 def  convertCase(toConvert):
     if str.isupper(toConvert):
         output = ord(toConvert) - 65
-        print(f"{output}")
+        #print(f"{output}")
     else:
         output = ord(toConvert) - 97
-        return chr(output)
+    return chr(output)
 
 
 def GetCypherCharLower(c, key):
@@ -33,17 +33,14 @@ def GetCypherCharLower(c, key):
         while int(newCharLower) > end:
             tempLower = int(newCharLower)
             tempLower -= 26
-            #newCharUpper =- -26
-            #tempUpper = int(newCharUpper)
-            #tempUpper -= 26
             if tempLower < end:
                 newCharUpper = tempLower
         return (newCharLower)
 
 
 def  GetCypherCharUpper(d, key):
-        end = 0
-        if ord(d) >= ord("A") and ord(d) <= ord("Z"):
+        #end = 0
+        if ord(d) >= ord('A') and ord(d) <= ord('Z'):
             end = 90
             if isUpperChar(d) == True:
                 newCharUpper = str(ord(d) + ord(convertCase(key)))
@@ -52,9 +49,6 @@ def  GetCypherCharUpper(d, key):
             while int(newCharUpper) > end:
                 tempUpper = int(newCharUpper)
                 tempUpper -= 26
-                #newCharUpper =- -26
-                #tempUpper = int(newCharUpper)
-                #tempUpper -= 26
                 if tempUpper < end:
                     newCharUpper = tempUpper
                     break
@@ -65,8 +59,8 @@ def  GetCypherCharUpper(d, key):
 
 
 
-k = argv[1] = "123456"
-i = "Zander" #get_string("Plaintext: ")
+k = argv[1] = "ABC"
+i = "HELLO" #get_string("Plaintext: ")
 length = len(i) #plaintext
 modLength = len(k) #key
 
@@ -77,7 +71,7 @@ if len(argv) == 0:
 elif str.isalpha(argv[1]) == 0:
     print("Invalid text entered!")
     exit
-elif len(argv) > 1:
+elif len(argv) > 2:
     print("Too many arguments")
     exit
 
