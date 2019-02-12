@@ -1,159 +1,90 @@
 from sys import argv
+#from cs50 import get_string
 
 def isLowerChar(input):
-    if str.islower(str(input)):
-       return true
+    if str.islower(input):
+        return True
     else:
-       return False
+        return False
 
 def isUpperChar(input):
-    if str.isupper(str(input)):
-       return true
+    if str.isupper(input):
+        return True
     else:
-       return False
-   
-def lowerToUpper(letter):
-    if str.islower(letter):
-        hex = ord(letter)
-        upperCase = chr(hex-32)
-        #print(f"{upperCase}")
-        #print(f"{chr(hex-32)}")
-        return upperCase
-    else:
-        return letter
+        return False;
 
-def upperToLower(letter):
-    if str.isupper(letter):
-        hex = ord(letter)
-        lowerCase = chr(hex+32)
-        #print(f"{upperCase}")
-        #print(f"{chr(hex-32)}")
-        return lowerCase
-    else:
-        return letter
 
-def convertCase(toConvert):
+
+def  convertCase(toConvert):
     if str.isupper(toConvert):
         output = ord(toConvert)-65
         print(f"{output}")
     else:
         output = ord(toConvert)-97
-    return output
+        return chr(output)
 
 
-def GetCypherCharUpper(d, key):
-    end = 0;
-    if (d >= ord('A') and d <= ord('Z')):
-        end=90;
+def GetCypherCharLower(c, key):
+    if ord(c) >= ord('a') and ord(c) <= ord('z'):
+        end = 122
+    
+    if isLowerChar(c) == True:
+        newCharLower= str(ord(c) + ord(convertCase(key)))
+    
+    else:
+        newCharLower = 0
 
-    if (isUpperChar(d)==True):
-        newCharUpper = d + (convertCase(key))
+    while int(newCharLower) > end:
+        newCharLower -= 26
+        if newCharLower < end:
+            break
+    return (newCharLower)
+
+
+
+
+def  GetCypherCharUpper(d, key):
+    end = 0
+    if ord(d) >=ord("A") and ord(d) <= ord("Z"):
+        end=90
+
+    if isUpperChar(d)==True:
+        newCharUpper= d + (convertCase(key))
     else:
         return 0
-    while True:
-        if newCharUpper > end:
-            newCharUpper -= 26
-        else:
+
+    while newCharUpper > end:
+        newCharUpper -= 26
+        if newCharUpper < end:
             break
+    return chr(newCharUpper)
     
-        return newCharUpper
 
 
-key = "z"
-keyDigit=ord(key)
+k = argv[1]
+i = "Dewald" #get_string("Plaintext: ")
+length = len(i) #cyphertext
+modLength = len(k) #plaintext
 
-if keyDigit <= 90:
-    keyMovement = keyDigit-65
-    print(f"In scope: {keyMovement}")
-    print(f"Key Digit: {keyDigit}")
+counter = -1
 
-if keyDigit > 90:
-    print(f"Not in scope of uppercase: {keyDigit}")
+for n in range(length):
+    a = i[n]
 
-print(f"Convert back to key: {chr(keyDigit)}")
+    if str.isalpha(a):
+        counter = counter + 1
 
-keyDigit=ord(key)
+    if str.isupper(a):
+        b = GetCypherCharUpper(a, k[(counter % modLength)])
 
-if keyDigit >=97 and keyDigit <=122:
-    keyMovement = keyDigit-97
-    print(f"In scope of lowercase: {keyMovement}")
-    print(f"Key Digit: {keyDigit}")
-
-if keyDigit > 122:
-    print(f"Not in scope: {keyDigit}")
-
-print(f"Convert back to key: {chr(keyDigit)}")
+    elif str.islower(a):
+        b = GetCypherCharLower(a,k[(counter % modLength)])
+    
+    c = int(b)
+    print(f"{chr(c)}")
 
 
+exit
 
 
-
-#def GetCypherCharLower(c, key):
-#    end = 0;
-#    if (c >= ord('a') and c <= ord('z')):
-#        end=122
-
-#    if (isLowerChar(c) == True):
-#        newCharLower = c + (convertCase(key))
-#    else:
-#        newCharLower = 0
-#    while True:
-#        if newCharLower > end: #wraparound of key... i.e. to stay between ascii a to z OR A to Z
-#            newCharLower -= 26
-#        else:
-#            break
-#    return newCharLower     
- 
-
-
-#def GetCypherCharUpper(d, key):
-#    end = 0
-#    if (d >= ord('A') and d <= ord('Z')):
-#        end=90
-#    if (isUpperChar(d) == True):
-#        newCharUpper = d + +(convertCase(key))
-#    else:
-#        return 0
-
-#        while True: 
-#            if newCharUpper > end:
-#                newCharUpper -= 26
-#                return newCharUpper
-#            break
-
-
-
-##def main()
-
-#if (len(argv) < 1):
-#    print("Fatal Error - No arguments passed! Program will now terminate!")
-#    exit
-#if (len(argv) > 0):
-#    lengthInput = len(argv[0])
-#    for a in range(lengthInput):
-#        if str.isalpha(argv[0][a])==0:
-#            print("Error - Only Alphabetical Characters allowed")
-       
-
-
-#k = (argv[0]);
-
-#i = "Dewald"
-#length = len(i)
-#modlength = len(k);
-
-#print("ciphertext: ")
-
-#counter = -1;
-
-
-#for c in i:
-#    if str.isalpha(c):
-#        counter=counter+1
-
-#    if str.isupper(c):
-#        a = GetCypherCharUpper(a,k[(counter % modlength)])
-#    elif str.islower(c):
-
-#         a = GetCypherCharLower(a,k[(counter % modlength)]);
-#    print(f"{a}")
+    
